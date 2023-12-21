@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "232873021424",
+    "project_id": "mycosmi",
+    "storage_bucket": "mycosmi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232873021424:android:4bc2a1473cb3193b815735",
+        "android_client_info": {
+          "package_name": "com.example.cosmi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVrrqcWUUnx0Sx22_mnmxIw5I-KMQykQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232873021424:android:d123827e90f118d8815735",
+        "android_client_info": {
+          "package_name": "com.example.mycosmi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVrrqcWUUnx0Sx22_mnmxIw5I-KMQykQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
