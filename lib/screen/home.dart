@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cosmi/screen/login.dart';
+import 'package:cosmi/screen/scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,15 +18,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ScanResult? scanResult;
-  bool? CollectionExist;
-  List<String> images = [
-    'assets/home/1.png'
-    'assets/home/2.png'
-    'assets/home/3.png'
-  ];
-
-  int currentpage = 0;
 
   final _flashOnController = TextEditingController(text: 'Flash on');
   final _flashOffController = TextEditingController(text: 'Flash off');
@@ -45,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _scan();
+    // _scan();
 
     Future.delayed(Duration.zero, () async {
       _numberOfCameras = await BarcodeScanner.numberOfCameras;
@@ -62,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // ];
   @override
   Widget build(BuildContext context) {
-    final scanResult = this.scanResult;
+    // final scanResult = this.scanResult;
 
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
@@ -74,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Color(0xff607C69),
                 width: 1
             )
+
         ),
         backgroundColor: Color(0xffF5F5F5),
         centerTitle: true,
@@ -154,7 +147,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xff607C69),
         onPressed: () {
-          onTapTapped(1);
+          // onTapTapped(0);
+          scanAndCheckDocument();
         },
         child: Icon(Icons.camera_alt),
       ),
@@ -167,10 +161,6 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.text_snippet),
             label: '나의 판매글',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '홈',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
@@ -200,17 +190,36 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
       setState(() {
-        scanResult = result;
-        doesCollectionExist(scanResult as String);
+        // scanResult = result;
+        // doesCollectionExist(scanResult as String);
       });
+      bool documentExists =
+          await doesDocumentExistInCollection('Products', result.rawContent);
+
+      if (documentExists) {
+        // The document exists in the "Products" collection
+        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+            .collection('Products')
+            .doc(result.rawContent)
+            .get();
+
+        print('Document ID: ${documentSnapshot.id}');
+        print('Data: ${documentSnapshot.data()}');
+
+        // Navigate to the Nutrition screen with the scanned result
+        Get.to(() => Nutrition(result.rawContent));
+      } else {
+        // The document does not exist in the "Products" collection
+        print('Document does not exist.');
+      }
     } on PlatformException catch (e) {
-      setState(() {
-        scanResult = ScanResult(
-          rawContent: e.code == BarcodeScanner.cameraAccessDenied
-              ? 'The user did not grant the camera permission!'
-              : 'Unknown error: $e',
-        );
-      });
+      // setState(() {
+      ScanResult(
+        rawContent: e.code == BarcodeScanner.cameraAccessDenied
+            ? 'The user did not grant the camera permission!'
+            : 'Unknown error: $e',
+      );
+      // });
     }
   }
 
@@ -218,6 +227,24 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentIndex = index;
     });
+  }
+}
+
+Future<bool> doesDocumentExistInCollection(
+    String collectionName, String documentId) async {
+  try {
+    // Get a reference to the Firestore document
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+        .collection(collectionName)
+        .doc(documentId)
+        .get();
+
+    // Check if the document exists
+    return documentSnapshot.exists;
+  } catch (e) {
+    // Handle errors, e.g., if there is a network error.
+    print('Error checking document existence: $e');
+    return false;
   }
 }
 
