@@ -1,4 +1,7 @@
 import 'package:cosmi/screen/home.dart';
+import 'package:cosmi/screen/onboarding/userInfo.dart';
+import 'package:cosmi/screen/onboarding/userInfoCont.dart';
+import 'package:cosmi/screen/onboarding/userSign.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -124,7 +127,7 @@ class Login extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => MyHomePage());
+                  Get.to(() => const UserSignIn());
                 },
                 child: Container(
                   width: 250,
@@ -151,7 +154,7 @@ class Login extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   )),
               SizedBox(
-                height: 190,
+                height: 100,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
