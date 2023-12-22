@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width,
+                            //width: MediaQuery.of(context).size.width,
                             child:CarouselSlider(
                               items: [
                                 Container(
@@ -101,10 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Image.asset("assets/home/1.png"),
                                   margin: EdgeInsets.all(6.0),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
                                 ),
-
                                 Container(
                                   height: 115,
                                   child: Image.asset("assets/home/2.png"),
