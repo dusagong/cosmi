@@ -80,144 +80,167 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.transparent,
           centerTitle: true,
         ),
-        shape: const Border(
-            bottom: BorderSide(color: Color(0xff607C69), width: 1)),
-        backgroundColor: Color(0xffF5F5F5),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-          child: ListView(
-        //physics: ClampingScrollPhysics(),
-        children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "컨텐츠",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff607D69)
+        body: SafeArea(
+            child: ListView(
+          //physics: ClampingScrollPhysics(),
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "컨텐츠",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff607D69)),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: 95,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Color(0xffcbd9c1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "SHORT",
-                              style: TextStyle(fontSize: 15, color: Color(0xff607C69)),
-                            ),
-                          ]
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 95,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Color(0xffcbd9c1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "동영상",
-                              style: TextStyle(fontSize: 15, color: Color(0xff607C69)),
-                            ),
-                          ]
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 95,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Color(0xffcbd9c1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "뷰티",
-                              style: TextStyle(fontSize: 15, color: Color(0xff607C69)),
-                            ),
-                          ]
-                      ),
-                    ),
-                  ],
-                ),
-                CarouselSlider(
-                  // Set carousel controller
-                  carouselController: carouselController,
-                  items: [1, 2, 3].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                            decoration:
-                                const BoxDecoration(color: Colors.transparent),
-                            child: Center(
-                              child: Image.asset(
-                                'assets/home/$i.png', // Assuming your images are named 1.png, 2.png, etc.
-                                width: 200, // Adjust the width as needed
-                                height: 180, // Adjust the height as needed
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 95,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Color(0xffcbd9c1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "SHORT",
+                                style: TextStyle(
+                                    fontSize: 15, color: Color(0xff607C69)),
                               ),
-                            ));
-                      },
-                    );
-                  }).toList(),
-                  options: CarouselOptions(
-                    height: 150,
-                    // aspectRatio: 1 / 9,
-                    viewportFraction: 0.5,
-                    // Set the initial page
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration:
-                        const Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    onPageChanged: (index, reason) {},
-                    scrollDirection: Axis.horizontal,
+                            ]),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        width: 95,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Color(0xffcbd9c1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "동영상",
+                                style: TextStyle(
+                                    fontSize: 15, color: Color(0xff607C69)),
+                              ),
+                            ]),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        width: 95,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Color(0xffcbd9c1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "뷰티",
+                                style: TextStyle(
+                                    fontSize: 15, color: Color(0xff607C69)),
+                              ),
+                            ]),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  "게시물",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff607D69)
+                  CarouselSlider(
+                    // Set carousel controller
+                    carouselController: carouselController,
+                    items: [1, 2, 3].map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: const BoxDecoration(
+                                  color: Colors.transparent),
+                              child: Center(
+                                child: Image.asset(
+                                  'assets/home/$i.png', // Assuming your images are named 1.png, 2.png, etc.
+                                  width: 200, // Adjust the width as needed
+                                  height: 180, // Adjust the height as needed
+                                ),
+                              ));
+                        },
+                      );
+                    }).toList(),
+                    options: CarouselOptions(
+                      height: 150,
+                      // aspectRatio: 1 / 9,
+                      viewportFraction: 0.5,
+                      // Set the initial page
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      onPageChanged: (index, reason) {},
+                      scrollDirection: Axis.horizontal,
+                    ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: (){
-                    Get.to(() => const TapPage());
-                  },
-                  child: Container(
+                  const SizedBox(height: 20),
+                  const Text(
+                    "게시물",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff607D69)),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => const TapPage());
+                    },
+                    child: Container(
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            'assets/home/Rectangle 6340.png', // Assuming your images are named 1.png, 2.png, etc.
+                          ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(5, 5.5, 0, 0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "꼭  알아두어야 할 화장품 유해성분",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
                     height: 120,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -227,104 +250,66 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Image.asset(
-                          'assets/home/Rectangle 6340.png', // Assuming your images are named 1.png, 2.png, etc.
+                          'assets/home/Rectangle 6342.png', // Assuming your images are named 1.png, 2.png, etc.
                         ),
                         Padding(
-                            padding:  EdgeInsets.fromLTRB(5, 5.5, 0, 0),
+                            padding: EdgeInsets.fromLTRB(5, 5.5, 0, 0),
                             child: Column(
                               children: [
                                 Text(
-                                  "꼭  알아두어야 할 화장품 유해성분",
+                                  "비건 화장품 이란?",
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.black
-                                  ),
+                                      color: Colors.black),
                                 ),
                               ],
-                            )
-                        )
+                            ))
                       ],
                     ),
-
                   ),
-                ),
-                Container(
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/home/Rectangle 6342.png', // Assuming your images are named 1.png, 2.png, etc.
-                      ),
-                      Padding(
-                          padding:  EdgeInsets.fromLTRB(5, 5.5, 0, 0),
-                          child: Column(
-                            children: [
-                              Text(
-                                "비건 화장품 이란?",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black
+                  Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/home/Rectangle 6344.png', // Assuming your images are named 1.png, 2.png, etc.
+                        ),
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5.5, 0, 0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "날짜 지난 화장품 사용하면?",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black),
                                 ),
-                              ),
-                            ],
-                          )
-                      )
-                    ],
+                              ],
+                            ))
+                      ],
+                    ),
                   ),
 
-                ),
-                Container(
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                  // Change page on each tap
+                  ElevatedButton(
+                    onPressed: () => carouselController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.linear),
+                    child: const Icon(Icons.arrow_forward),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/home/Rectangle 6344.png', // Assuming your images are named 1.png, 2.png, etc.
-                      ),
-                      Padding(
-                          padding:  EdgeInsets.fromLTRB(5, 5.5, 0, 0),
-                          child: Column(
-                            children: [
-                              Text(
-                                "날짜 지난 화장품 사용하면?",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black
-                                ),
-                              ),
-                            ],
-                          )
-                      )
-                    ],
-                  ),
+                ],
+              ),
+            )
+          ],
+        )),
 
-                ),
-
-                // Change page on each tap
-                ElevatedButton(
-                  onPressed: () => carouselController.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.linear),
-                  child: const Icon(Icons.arrow_forward),
-                ),
-              ],
-            ),
-          )
-        ],
-      )),
-      
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color(0xff617B69),
           onPressed: () {
@@ -343,7 +328,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   blurRadius: 10,
                   offset: const Offset(0, -4)),
             ],
-
           ),
           child: BottomNavigationBar(
             selectedItemColor: Color(0xff607C69),
