@@ -58,17 +58,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // final scanResult = this.scanResult;
 
-    return Scaffold(
-      backgroundColor: Color(0xffF5F5F5),
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back_ios)),
-        title: const Text(
-          "홈",
-          style: TextStyle(color: Color(0xff607C69)),
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/back/realPaper.png'))),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
+          title: const Text(
+            "홈",
+            style: TextStyle(color: Color(0xff607C69)),
+          ),
+          shape: const Border(
+              bottom: BorderSide(color: Color(0xff607C69), width: 1)),
+          backgroundColor: Colors.transparent,
+          centerTitle: true,
         ),
         shape: const Border(
             bottom: BorderSide(color: Color(0xff607C69), width: 1)),
@@ -314,29 +324,44 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       )),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff607C69),
-        onPressed: () {
-          // onTapTapped(0);
-          scanAndCheckDocument();
-        },
-        child: Icon(Icons.camera_alt),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color(0xff607C69),
-        onTap: onTapTapped,
-        currentIndex: _currentIndex,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.text_snippet),
-            label: '나의 판매글',
+      
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xff617B69),
+          onPressed: () {
+            // onTapTapped(0);
+            print('object1');
+            scanAndCheckDocument();
+          },
+          child: Image.asset('assets/home/camera.png'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Color(0x26000000),
+                  blurRadius: 10,
+                  offset: const Offset(0, -4)),
+            ],
+
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: '마이페이지',
+          child: BottomNavigationBar(
+            selectedItemColor: Color(0xff607C69),
+            onTap: onTapTapped,
+            currentIndex: _currentIndex,
+            // elevation: 10,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.text_snippet),
+                label: '나의 판매글',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: '마이페이지',
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
