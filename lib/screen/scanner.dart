@@ -3,15 +3,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cosmi/screen/nutrition.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'dart:async'; // Import this to use the Timer class
 
 Future<void> scanAndCheckDocument() async {
   try {
     final result = await BarcodeScanner.scan(
       options: ScanOptions(
-        // Configure scan options as needed
-      ),
+          // Configure scan options as needed
+          ),
     );
-
+    Get.to(() => Nutrition(result.rawContent));
+    print('object');
     bool documentExists =
         await doesDocumentExistInCollection('Products', result.rawContent);
 
