@@ -11,6 +11,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'Tap.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -80,7 +82,80 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  "컨텐츠",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff607D69)
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: 95,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Color(0xffcbd9c1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "SHORT",
+                              style: TextStyle(fontSize: 15, color: Color(0xff607C69)),
+                            ),
+                          ]
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 95,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Color(0xffcbd9c1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "동영상",
+                              style: TextStyle(fontSize: 15, color: Color(0xff607C69)),
+                            ),
+                          ]
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: 95,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Color(0xffcbd9c1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "뷰티",
+                              style: TextStyle(fontSize: 15, color: Color(0xff607C69)),
+                            ),
+                          ]
+                      ),
+                    ),
+                  ],
+                ),
                 CarouselSlider(
                   // Set carousel controller
                   carouselController: carouselController,
@@ -96,14 +171,14 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Image.asset(
                                 'assets/home/$i.png', // Assuming your images are named 1.png, 2.png, etc.
                                 width: 200, // Adjust the width as needed
-                                height: 200, // Adjust the height as needed
+                                height: 180, // Adjust the height as needed
                               ),
                             ));
                       },
                     );
                   }).toList(),
                   options: CarouselOptions(
-                    height: 200,
+                    height: 150,
                     // aspectRatio: 1 / 9,
                     viewportFraction: 0.5,
                     // Set the initial page
@@ -120,6 +195,112 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                const Text(
+                  "게시물",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff607D69)
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Get.to(() => const TapPage());
+                  },
+                  child: Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/home/Rectangle 6340.png', // Assuming your images are named 1.png, 2.png, etc.
+                        ),
+                        Padding(
+                            padding:  EdgeInsets.fromLTRB(5, 5.5, 0, 0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "꼭  알아두어야 할 화장품 유해성분",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black
+                                  ),
+                                ),
+                              ],
+                            )
+                        )
+                      ],
+                    ),
+
+                  ),
+                ),
+                Container(
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/home/Rectangle 6342.png', // Assuming your images are named 1.png, 2.png, etc.
+                      ),
+                      Padding(
+                          padding:  EdgeInsets.fromLTRB(5, 5.5, 0, 0),
+                          child: Column(
+                            children: [
+                              Text(
+                                "비건 화장품 이란?",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ],
+                          )
+                      )
+                    ],
+                  ),
+
+                ),
+                Container(
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/home/Rectangle 6344.png', // Assuming your images are named 1.png, 2.png, etc.
+                      ),
+                      Padding(
+                          padding:  EdgeInsets.fromLTRB(5, 5.5, 0, 0),
+                          child: Column(
+                            children: [
+                              Text(
+                                "날짜 지난 화장품 사용하면?",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black
+                                ),
+                              ),
+                            ],
+                          )
+                      )
+                    ],
+                  ),
+
+                ),
 
                 // Change page on each tap
                 ElevatedButton(
