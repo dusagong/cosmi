@@ -1,4 +1,5 @@
 import 'package:cosmi/screen/login.dart';
+import 'package:cosmi/screen/scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,9 +17,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ScanResult? scanResult;
-  bool? CollectionExist;
-
   final _flashOnController = TextEditingController(text: 'Flash on');
   final _flashOffController = TextEditingController(text: 'Flash off');
   final _cancelController = TextEditingController(text: 'Cancel');
@@ -37,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _scan();
+    // _scan();
 
     Future.delayed(Duration.zero, () async {
       _numberOfCameras = await BarcodeScanner.numberOfCameras;
@@ -53,36 +51,38 @@ class _MyHomePageState extends State<MyHomePage> {
   // ];
   @override
   Widget build(BuildContext context) {
-    final scanResult = this.scanResult;
+    // final scanResult = this.scanResult;
 
     return Scaffold(
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
-            ScanResult? collectionName = scanResult;
-            // bool collectionExists = await doesCollectionExist(collectionName.toString());
-            bool collectionExists = await doesCollectionExist('809656990909');
+            _scan();
+            // ScanResult? collectionName = scanResult;
+            // // bool collectionExists = await doesCollectionExist(collectionName.toString());
+            // bool collectionExists = await doesCollectionExist('809656990909');
 
-            if (collectionExists) {
-              List<DocumentSnapshot> documents =
-                  await getDocumentsInCollection('809656990909');
-              for (var document in documents) {
-                print('Document ID: ${document.id}');
-                print('Data: ${document.data()}');
-              }
-              Get.to(() => Nutrition(collectionName.toString()));
-            } else {
-              print('Collection does not exist.');
-            }
-            List<String> collections = await getAllCollections();
-            print('All Collections: $collections');
+            // if (collectionExists) {
+            //   List<DocumentSnapshot> documents =
+            //       await getDocumentsInCollection('809656990909');
+            //   for (var document in documents) {
+            //     print('Document ID: ${document.id}');
+            //     print('Data: ${document.data()}');
+            //   }
+            //   Get.to(() => Nutrition(collectionName.toString()));
+            // } else {
+            //   print('Collection does not exist.');
+            // }
+            // List<String> collections = await getAllCollections();
+            // print('All Collections: $collections');
           },
           child: Text('Check Collection Existence and Print Documents'),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          onTapTapped(1);
+          // onTapTapped(0);
+          scanAndCheckDocument();
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -93,10 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.text_snippet),
             label: '나의 판매글',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '홈',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
@@ -126,17 +122,36 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
       setState(() {
-        scanResult = result;
-        doesCollectionExist(scanResult as String);
+        // scanResult = result;
+        // doesCollectionExist(scanResult as String);
       });
+      bool documentExists =
+          await doesDocumentExistInCollection('Products', result.rawContent);
+
+      if (documentExists) {
+        // The document exists in the "Products" collection
+        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+            .collection('Products')
+            .doc(result.rawContent)
+            .get();
+
+        print('Document ID: ${documentSnapshot.id}');
+        print('Data: ${documentSnapshot.data()}');
+
+        // Navigate to the Nutrition screen with the scanned result
+        Get.to(() => Nutrition(result.rawContent));
+      } else {
+        // The document does not exist in the "Products" collection
+        print('Document does not exist.');
+      }
     } on PlatformException catch (e) {
-      setState(() {
-        scanResult = ScanResult(
-          rawContent: e.code == BarcodeScanner.cameraAccessDenied
-              ? 'The user did not grant the camera permission!'
-              : 'Unknown error: $e',
-        );
-      });
+      // setState(() {
+      ScanResult(
+        rawContent: e.code == BarcodeScanner.cameraAccessDenied
+            ? 'The user did not grant the camera permission!'
+            : 'Unknown error: $e',
+      );
+      // });
     }
   }
 
@@ -144,6 +159,24 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentIndex = index;
     });
+  }
+}
+
+Future<bool> doesDocumentExistInCollection(
+    String collectionName, String documentId) async {
+  try {
+    // Get a reference to the Firestore document
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+        .collection(collectionName)
+        .doc(documentId)
+        .get();
+
+    // Check if the document exists
+    return documentSnapshot.exists;
+  } catch (e) {
+    // Handle errors, e.g., if there is a network error.
+    print('Error checking document existence: $e');
+    return false;
   }
 }
 
