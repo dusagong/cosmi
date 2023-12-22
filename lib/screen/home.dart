@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cosmi/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +19,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   ScanResult? scanResult;
   bool? CollectionExist;
+  List<String> images = [
+    'assets/home/1.png'
+    'assets/home/2.png'
+    'assets/home/3.png'
+  ];
+
+  int currentpage = 0;
 
   final _flashOnController = TextEditingController(text: 'Flash on');
   final _flashOffController = TextEditingController(text: 'Flash off');
@@ -43,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _numberOfCameras = await BarcodeScanner.numberOfCameras;
       setState(() {});
     });
+
   }
 
   int _currentIndex = 1;
@@ -56,37 +65,102 @@ class _MyHomePageState extends State<MyHomePage> {
     final scanResult = this.scanResult;
 
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            ScanResult? collectionName = scanResult;
-            // bool collectionExists = await doesCollectionExist(collectionName.toString());
-            bool collectionExists = await doesCollectionExist('809656990909');
-
-            if (collectionExists) {
-              List<DocumentSnapshot> documents =
-                  await getDocumentsInCollection('809656990909');
-              for (var document in documents) {
-                print('Document ID: ${document.id}');
-                print('Data: ${document.data()}');
-              }
-              Get.to(() => Nutrition(collectionName.toString()));
-            } else {
-              print('Collection does not exist.');
-            }
-            List<String> collections = await getAllCollections();
-            print('All Collections: $collections');
-          },
-          child: Text('Check Collection Existence and Print Documents'),
+      backgroundColor: Color(0xffF5F5F5),
+      appBar: AppBar(
+        leading: IconButton(onPressed: (){Get.back();}, icon: const Icon(Icons.arrow_back_ios)),
+        title: const Text("홈", style: TextStyle(color: Color(0xff607C69)),),
+        shape: const Border(
+            bottom: BorderSide(
+                color: Color(0xff607C69),
+                width: 1
+            )
         ),
+        backgroundColor: Color(0xffF5F5F5),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: ListView(
+          //physics: ClampingScrollPhysics(),
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "컨텐츠",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff607D69)
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            child:CarouselSlider(
+                              items: [
+                                Container(
+                                  height: 115,
+                                  child: Image.asset("assets/home/1.png"),
+                                  margin: EdgeInsets.all(6.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+
+                                Container(
+                                  height: 115,
+                                  child: Image.asset("assets/home/2.png"),
+                                  margin: EdgeInsets.all(6.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                Container(
+                                  height: 115,
+                                  child: Image.asset("assets/home/3.png"),
+                                  margin: EdgeInsets.all(6.0),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ],
+                              options: CarouselOptions(
+                                height: 180.0,
+                                enlargeCenterPage: true,
+                                autoPlay: true,
+                                aspectRatio: 16 / 9,
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                enableInfiniteScroll: true,
+                                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                                viewportFraction: 0.4,
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        )
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff607C69),
         onPressed: () {
           onTapTapped(1);
         },
+        child: Icon(Icons.camera_alt),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color(0xff607C69),
         onTap: onTapTapped,
         currentIndex: _currentIndex,
         items: const <BottomNavigationBarItem>[
