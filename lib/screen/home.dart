@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:cosmi/screen/nutrition.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -18,10 +19,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final _flashOnController = TextEditingController(text: 'Flash on');
   final _flashOffController = TextEditingController(text: 'Flash off');
   final _cancelController = TextEditingController(text: 'Cancel');
+  CarouselController carouselController = CarouselController();
 
   var _aspectTolerance = 0.00;
   var _numberOfCameras = 0;
@@ -43,7 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _numberOfCameras = await BarcodeScanner.numberOfCameras;
       setState(() {});
     });
-
   }
 
   int _currentIndex = 1;
@@ -59,90 +59,80 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       appBar: AppBar(
-        leading: IconButton(onPressed: (){Get.back();}, icon: const Icon(Icons.arrow_back_ios)),
-        title: const Text("홈", style: TextStyle(color: Color(0xff607C69)),),
-        shape: const Border(
-            bottom: BorderSide(
-                color: Color(0xff607C69),
-                width: 1
-            )
-
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
+        title: const Text(
+          "홈",
+          style: TextStyle(color: Color(0xff607C69)),
         ),
+        shape: const Border(
+            bottom: BorderSide(color: Color(0xff607C69), width: 1)),
         backgroundColor: Color(0xffF5F5F5),
         centerTitle: true,
       ),
       body: SafeArea(
-        child: ListView(
-          //physics: ClampingScrollPhysics(),
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "컨텐츠",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff607D69)
-                            ),
-                          ),
-                          Container(
-                            //width: MediaQuery.of(context).size.width,
-                            child:CarouselSlider(
-                              items: [
-                                Container(
-                                  height: 115,
-                                  child: Image.asset("assets/home/1.png"),
-                                  margin: EdgeInsets.all(6.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                                Container(
-                                  height: 115,
-                                  child: Image.asset("assets/home/2.png"),
-                                  margin: EdgeInsets.all(6.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                                Container(
-                                  height: 115,
-                                  child: Image.asset("assets/home/3.png"),
-                                  margin: EdgeInsets.all(6.0),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ],
-                              options: CarouselOptions(
-                                height: 180.0,
-                                enlargeCenterPage: true,
-                                autoPlay: true,
-                                aspectRatio: 16 / 9,
-                                autoPlayCurve: Curves.fastOutSlowIn,
-                                enableInfiniteScroll: true,
-                                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                                viewportFraction: 0.4,
+          child: ListView(
+        //physics: ClampingScrollPhysics(),
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
+            child: Column(
+              children: [
+                CarouselSlider(
+                  // Set carousel controller
+                  carouselController: carouselController,
+                  items: [1, 2, 3].map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            decoration:
+                                const BoxDecoration(color: Colors.transparent),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/home/$i.png', // Assuming your images are named 1.png, 2.png, etc.
+                                width: 200, // Adjust the width as needed
+                                height: 200, // Adjust the height as needed
                               ),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        )
-      ),
+                            ));
+                      },
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: 200,
+                    // aspectRatio: 1 / 9,
+                    viewportFraction: 0.5,
+                    // Set the initial page
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 3),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    onPageChanged: (index, reason) {},
+                    scrollDirection: Axis.horizontal,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Change page on each tap
+                ElevatedButton(
+                  onPressed: () => carouselController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.linear),
+                  child: const Icon(Icons.arrow_forward),
+                ),
+              ],
+            ),
+          )
+        ],
+      )),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xff607C69),
         onPressed: () {
@@ -226,68 +216,5 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentIndex = index;
     });
-  }
-}
-
-Future<bool> doesDocumentExistInCollection(
-    String collectionName, String documentId) async {
-  try {
-    // Get a reference to the Firestore document
-    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-        .collection(collectionName)
-        .doc(documentId)
-        .get();
-
-    // Check if the document exists
-    return documentSnapshot.exists;
-  } catch (e) {
-    // Handle errors, e.g., if there is a network error.
-    print('Error checking document existence: $e');
-    return false;
-  }
-}
-
-Future<bool> doesCollectionExist(String collectionName) async {
-  try {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection(collectionName).get();
-    return querySnapshot.docs.isNotEmpty;
-  } catch (e) {
-    // Handle errors, e.g., if the collection doesn't exist or there is a network error.
-    print('Error checking collection existence: $e');
-    return false;
-  }
-}
-
-Future<List<DocumentSnapshot>> getDocumentsInCollection(
-    String collectionName) async {
-  try {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection(collectionName).get();
-    return querySnapshot.docs;
-  } catch (e) {
-    // Handle errors, e.g., if the collection doesn't exist or there is a network error.
-    print('Error fetching documents from collection: $e');
-    return [];
-  }
-}
-
-Future<List<String>> getAllCollections() async {
-  try {
-    List<String> collections = [];
-
-    // Use a dummy document to get a reference to the Firestore instance
-    // and then retrieve the list of collections.
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('dummy').get();
-
-    for (QueryDocumentSnapshot document in querySnapshot.docs) {
-      collections.add(document.reference.path.split('/')[0]);
-    }
-
-    return collections;
-  } catch (e) {
-    print('Error retrieving collections: $e');
-    return [];
   }
 }

@@ -168,7 +168,7 @@ class _InforContentState extends State<InforContent> {
                           }
                           else
                           {
-                            Get.to(() => MyHomePage() );
+                            Get.to(() => const MyHomePage() );
                           }
                         },
                         child: Container(
