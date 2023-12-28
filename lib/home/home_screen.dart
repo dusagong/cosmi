@@ -149,13 +149,13 @@ class _HomeScreenState extends State<HomeScreen> {
         print('Data: ${documentSnapshot.data()}');
 
         // Navigate to the Nutrition screen with the scanned result
-        if (result.rawContent == '8803328505927')
+        if (result.rawContent.toString() == '8803328505927')
           Get.to(() => Nutrition(result.rawContent));
-        else if (result.rawContent == '8806105401696') {
+        else if (result.rawContent.toString() == '8806105401696') {
           Get.to(() => Nutrition1(result.rawContent));
-        } else if (result.rawContent == '6921439805643') {
+        } else if (result.rawContent.toString() == '6921439805643') {
           Get.to(() => Nutrition2(result.rawContent));
-        } else if (result.rawContent == '8809372278299') {
+        } else if (result.rawContent.toString() == '8809372278299') {
           Get.to(() => Nutrition3(result.rawContent));
         }
       } else {
