@@ -134,8 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
         // doesCollectionExist(scanResult as String);
         print('object');
       });
-      bool documentExists =
-          await doesDocumentExistInCollection('Products', result.rawContent);
+      bool documentExists = await doesDocumentExistInCollection(
+          'Products', result.rawContent.toString());
       print('여거!!');
       print(result.rawContent);
       if (documentExists) {
