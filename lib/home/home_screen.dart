@@ -1,3 +1,4 @@
+import 'package:cosmi/controll.dart';
 import 'package:cosmi/screen/wish.dart';
 import 'package:flutter/material.dart';
 import 'package:cosmi/constants.dart';
@@ -24,6 +25,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+SimpleController controller = Get.put(SimpleController()); // controller 등록
 
 class _HomeScreenState extends State<HomeScreen> {
   final _flashOnController = TextEditingController(text: 'Flash on');
@@ -126,6 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         // scanResult = result;
         // doesCollectionExist(scanResult as String);
+        print('object');
+        controller.Switch();
       });
       bool documentExists =
           await doesDocumentExistInCollection('Products', result.rawContent);
