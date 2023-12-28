@@ -65,9 +65,18 @@ class _NutritionState extends State<Nutrition> {
               children: [
                 Image.asset('assets/UT/horse.jpeg'),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('마유크림 horse cream 7%'),
+                    SizedBox(
+                      width: 23,
+                    ),
+                    Text(
+                        '마유크림 horse cream 7%',
+                      style : TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.w400
+                      )
+                    ),
                     SizedBox(
                       height: 1,
                     ),
@@ -89,7 +98,8 @@ class _NutritionState extends State<Nutrition> {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
-                        )),
+                        )
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -235,7 +245,32 @@ class _NutritionState extends State<Nutrition> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                          ))
+                          )),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("ph 지수",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff5DB075)
+                          )
+                      ),
+                      Text("6.5, 약산성 ",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff5DB075)
+                          )
+                      ),
                     ],
                   ),
                 ),
