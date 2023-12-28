@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bool documentExists = await doesDocumentExistInCollection(
           'Products', result.rawContent.toString());
       print('여거!!');
-      print(result.rawContent);
+      print(result.rawContent.toString());
       if (documentExists) {
         // The document exists in the "Products" collection
         DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
