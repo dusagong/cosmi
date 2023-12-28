@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^4.13.6
   get: ^4.6.6
   carousel_slider: ^4.2.1
+  flutter_native_splash: ^2.3.8
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,8 @@ flutter:
     - assets/login/
     - assets/home/
     - assets/back/
+    - assets/onboard/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

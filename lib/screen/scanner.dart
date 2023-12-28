@@ -8,12 +8,7 @@ import 'dart:async'; // Import this to use the Timer class
 Future<void> scanAndCheckDocument() async {
   try {
     final result = await BarcodeScanner.scan(
-      options: ScanOptions(
-          // Configure scan options as needed
-          ),
-    );
-    Get.to(() => Nutrition(result.rawContent));
-    print('object');
+      options: ScanOptions());
     bool documentExists =
         await doesDocumentExistInCollection('Products', result.rawContent);
 
@@ -26,9 +21,6 @@ Future<void> scanAndCheckDocument() async {
 
       print('Document ID: ${documentSnapshot.id}');
       print('Data: ${documentSnapshot.data()}');
-
-      // Navigate to the Nutrition screen with the scanned result
-      Get.to(() => Nutrition(result.rawContent));
     } else {
       // The document does not exist in the "Products" collection
       print('Document does not exist.');

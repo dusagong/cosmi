@@ -1,8 +1,10 @@
+import 'package:cosmi/screen/onboarding/SplashPage.dart';
 import 'package:cosmi/screen/home.dart';
-import 'package:cosmi/screen/login.dart';
+import 'package:cosmi/screen/NotUse/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/route_manager.dart';
+import 'constants.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -23,10 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff607D69)),
-        useMaterial3: true,
+        scaffoldBackgroundColor: mBackgroundColor,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const Login(),
+      home: const SplashPage(),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
