@@ -1,11 +1,14 @@
 import 'package:cosmi/constants.dart';
 import 'package:cosmi/controll.dart';
 import 'package:cosmi/home/home_screen.dart';
+import 'package:cosmi/screen/AI/aiAnalysis1.dart';
+import 'package:cosmi/screen/AI/aiAnalysis2.dart';
+import 'package:cosmi/screen/AI/aiAnalysis3.dart';
 import 'package:cosmi/screen/ai.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'aiAnalysis.dart';
+import 'AI/aiAnalysis.dart';
 
 class Wish extends StatefulWidget {
   const Wish({super.key});
@@ -170,7 +173,7 @@ class _WishState extends State<Wish> {
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            Get.to(() => Analysis());
+                            Get.to(() => Analysis3());
                           },
                           style: ElevatedButton.styleFrom(
                               primary: Color(0xFF5DB075)),
@@ -257,7 +260,7 @@ class _WishState extends State<Wish> {
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            Get.to(() => Analysis());
+                            Get.to(() => Analysis2());
                           },
                           style: ElevatedButton.styleFrom(
                               primary: Color(0xFF5DB075)),
@@ -343,7 +346,7 @@ class _WishState extends State<Wish> {
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            Get.to(() => Analysis());
+                            Get.to(() => Analysis1());
                           },
                           style: ElevatedButton.styleFrom(
                               primary: Color(0xFF5DB075)),

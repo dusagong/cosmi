@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       } else {
         print('Document does not exist.');
-        // Get.to(() => Nutrition3(result.rawContent));
+        Get.to(() => Nutrition1(result.rawContent));
       }
     } on PlatformException catch (e) {
       // setState(() {

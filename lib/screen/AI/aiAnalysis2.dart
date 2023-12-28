@@ -5,16 +5,16 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import 'onboarding/userInfo.dart';
+import '../onboarding/userInfo.dart';
 
-class Analysis extends StatefulWidget {
-  const Analysis({Key? key}) : super(key: key);
+class Analysis2 extends StatefulWidget {
+  const Analysis2({Key? key}) : super(key: key);
 
   @override
-  State<Analysis> createState() => _AnalysisState();
+  State<Analysis2> createState() => _Analysis2State();
 }
 
-class _AnalysisState extends State<Analysis> {
+class _Analysis2State extends State<Analysis2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,7 +199,7 @@ class _AnalysisState extends State<Analysis> {
                       Container(
                         width: 122,
                         height: 122,
-                        child: Image.asset('assets/UT/horse.jpeg',),
+                        child: Image.asset('assets/nutrition/nu2.jpeg',),
                         decoration: BoxDecoration(
                           color: Color(0xFFE0E3E7),
                           borderRadius: BorderRadius.circular(8),
