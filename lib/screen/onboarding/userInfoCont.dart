@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../home/home_screen.dart';
 import '../nutrition.dart';
 
 class InforContent extends StatefulWidget {
@@ -41,15 +42,15 @@ class _InforContentState extends State<InforContent> {
               fit: BoxFit.cover,
               image: AssetImage('assets/back/realPaper.png'))),
       child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             title: const Text(
-              "회원가입",
-              style: TextStyle(color: Color(0xff607C69)),
+              "User Information",
+              style: TextStyle(color: Colors.black),
             ),
             shape: const Border(
-                bottom: BorderSide(color: Color(0xff607C69), width: 1)),
+                bottom: BorderSide(color: Colors.black, width: 2)),
             centerTitle: true,
             leading: IconButton(
               onPressed: () {
@@ -75,7 +76,7 @@ class _InforContentState extends State<InforContent> {
                             style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xff607D69)),
+                                color: Colors.black),
                           ),
                           SizedBox(
                             height: 13,
@@ -108,13 +109,13 @@ class _InforContentState extends State<InforContent> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                       color: isSelected[index]
-                                          ? Color(0xFF607D69)
+                                          ? Color(0xFF5DB075)
                                           : Color(0xFFADADAD),
                                     ),
                                     color: isSelected[index]
-                                        ? Color(0xffCCDAC1) // 선택되었을 때 색상 변경
+                                        ? Color(0xFF5DB075) // 선택되었을 때 색상 변경
                                         : Color(0xffF5F5F5),
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Center(
                                     child: Text(
@@ -125,7 +126,7 @@ class _InforContentState extends State<InforContent> {
                                         fontSize:
                                             widget.data.length >= 6 ? 13 : 15,
                                         color: isSelected[index]
-                                            ? Color(0xFF607D69)
+                                            ? Color(0xffF5F5F5)
                                             : Color(0xFFADADAD),
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -147,7 +148,7 @@ class _InforContentState extends State<InforContent> {
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xff607D69)),
+                                            color: Colors.black),
                                       ),
                                       TextField(
                                         decoration: InputDecoration(
@@ -179,16 +180,19 @@ class _InforContentState extends State<InforContent> {
                                 curve: Curves.easeInOut, // 페이지 전환 애니메이션 곡선
                               );
                             } else {
-                              Get.to(() => const MyHomePage());
+                              Get.to(() => HomeScreen());
                             }
                           },
                           child: Container(
                             height: 46,
                             width: 308,
                             decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color(0xFFADADAD),
+                              ),
                               color: isSelected.contains(true)
-                                  ? Color(0xff607C69)
-                                  : Color(0xffcbd9c1),
+                                  ? Color(0xFF5DB075)
+                                  :  Color(0xffF5F5F5),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Column(
@@ -206,7 +210,7 @@ class _InforContentState extends State<InforContent> {
                                               "완료",
                                               style: TextStyle(
                                                   fontSize: 15,
-                                                  color: Color(0xff607C69)),
+                                                  color: Color(0xFF5DB075)),
                                             )
                                       : isSelected.contains(true)
                                           ? const Text(
@@ -219,7 +223,7 @@ class _InforContentState extends State<InforContent> {
                                               "다음",
                                               style: TextStyle(
                                                   fontSize: 15,
-                                                  color: Color(0xff607C69)),
+                                                  color: Color(0xFFADADAD)),
                                             )
                                 ]),
                           ),
