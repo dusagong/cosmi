@@ -5,8 +5,13 @@ class SimpleController extends GetxController {
   bool _counter = false;
   bool get counter => _counter;
 
-  void Switch() {
-    _counter = !_counter;
+  void save() {
+    _counter = true;
+    update();
+  }
+
+  void delete() {
+    _counter = false;
     update();
   }
 }

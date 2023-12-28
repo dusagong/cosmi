@@ -26,9 +26,9 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-SimpleController controller = Get.put(SimpleController()); // controller 등록
-
 class _HomeScreenState extends State<HomeScreen> {
+  SimpleController controller = Get.put(SimpleController());
+
   final _flashOnController = TextEditingController(text: 'Flash on');
   final _flashOffController = TextEditingController(text: 'Flash off');
   final _cancelController = TextEditingController(text: 'Cancel');
@@ -130,7 +130,6 @@ class _HomeScreenState extends State<HomeScreen> {
         // scanResult = result;
         // doesCollectionExist(scanResult as String);
         print('object');
-        controller.Switch();
       });
       bool documentExists =
           await doesDocumentExistInCollection('Products', result.rawContent);
