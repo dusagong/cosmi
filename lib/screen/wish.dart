@@ -56,6 +56,46 @@ class _WishState extends State<Wish> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // if (controller.counter3)
+          if (controller.getTrueCount() == 0)
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+              child: Container(
+                width: double.infinity,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 4,
+                      color: Color(0x320E151B),
+                      offset: Offset(0, 1),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'add what you like',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            Get.offAll(() => HomeScreen());
+                          },
+                          icon: Icon(
+                            Icons.add,
+                            color: Colors.grey,
+                          ))
+                    ],
+                  ),
+                ),
+              ),
+            ),
           if (controller.getCounter(3))
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),

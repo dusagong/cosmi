@@ -71,4 +71,7 @@ class SimpleController extends GetxController {
     counters[index] = false;
     update();
   }
+  int getTrueCount() {
+    return counters.where((element) => element == true).length;
+  }
 }
