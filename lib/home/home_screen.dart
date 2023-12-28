@@ -133,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
       });
       bool documentExists =
           await doesDocumentExistInCollection('Products', result.rawContent);
-
+      print('여거!!');
+      print(result.rawContent);
       if (documentExists) {
         // The document exists in the "Products" collection
         DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
@@ -148,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Get.to(() => Nutrition(result.rawContent));
       } else {
         print('Document does not exist.');
-        // Get.to(() => Nutrition(result.rawContent));
+        Get.to(() => Nutrition(result.rawContent));
       }
     } on PlatformException catch (e) {
       // setState(() {
