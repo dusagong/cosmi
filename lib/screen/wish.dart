@@ -120,7 +120,6 @@ class _WishState extends State<Wish> {
                           IconButton(
                             onPressed: () {
                               setState(() {
-                                controller.Switch();
                               });
                               print(controller.counter);
                             },
