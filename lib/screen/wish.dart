@@ -1,5 +1,6 @@
 import 'package:cosmi/constants.dart';
 import 'package:cosmi/controll.dart';
+import 'package:cosmi/home/home_screen.dart';
 import 'package:cosmi/screen/ai.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -120,6 +121,7 @@ class _WishState extends State<Wish> {
                           IconButton(
                             onPressed: () {
                               setState(() {
+                                controller.delete();
                               });
                               print(controller.counter);
                             },
@@ -137,22 +139,45 @@ class _WishState extends State<Wish> {
                     ),
                   ),
                 )
-              : const Padding(
-                padding: EdgeInsets.fromLTRB(0, 24, 0, 0),
-                child: Center(
-                  child:
-                  Text(
-                    '바코드 스캔을 통해 마음에 드는 제품을 담으세요!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Readex Pro',
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      color: Color(0xFF5DB075),
+              : Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Color(0x320E151B),
+                          offset: Offset(0, 1),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            'add what you like',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                Get.offAll(() => HomeScreen());
+                              },
+                              icon: Icon(
+                                Icons.add,
+                                color: Colors.grey,
+                              ))
+                        ],
+                      ),
                     ),
                   ),
-                ),
-          )
+                )
         ],
       ),
     );

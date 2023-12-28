@@ -147,9 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
         // Navigate to the Nutrition screen with the scanned result
         Get.to(() => Nutrition(result.rawContent));
       } else {
-        // The document does not exist in the "Products" collection
         print('Document does not exist.');
-        Get.to(() => Nutrition(result.rawContent));
+        // Get.to(() => Nutrition(result.rawContent));
       }
     } on PlatformException catch (e) {
       // setState(() {

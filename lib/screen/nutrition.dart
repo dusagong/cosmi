@@ -417,72 +417,72 @@ class _NutritionState extends State<Nutrition> {
           ),
 
           //Alert!!!
-          // Visibility(
-          //   visible: isClick, // Show or hide based on the value of isClick
-          //   child: Center(
-          //     child: Container(
-          //       width: 255.27,
-          //       height: 125.11,
-          //       decoration: BoxDecoration(
-          //         color: Colors.white,
-          //         borderRadius: BorderRadius.circular(10),
-          //         border: Border.all(
-          //           color: Color(0xffADADAD),
-          //           width: 1,
-          //         ),
-          //         boxShadow: [
-          //           BoxShadow(
-          //             color: Color(0x40000000),
-          //             spreadRadius: 0,
-          //             blurRadius: 4,
-          //             offset: Offset(4, 4),
-          //           ),
-          //         ],
-          //       ),
-          //       child: Column(
-          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //         children: [
-          //           Text("저장하였습니다.",
-          //               style: TextStyle(
-          //                   fontSize: 20,
-          //                   fontWeight: FontWeight.w700,
-          //                   color: Color(0xff607D6A))),
-          //           GestureDetector(
-          //             onTap: () {
-          //               Get.back();
-          //             },
-          //             child: Container(
-          //               width: 91,
-          //               height: 31,
-          //               decoration: BoxDecoration(
-          //                   borderRadius: BorderRadius.circular(17),
-          //                   color: Color(0xffDBE5D4)
-          //                   // border: Border.all(
-          //                   //   color: Color(0xff686572),
-          //                   //   width: 2,
-          //                   // ),
-          //                   // boxShadow: [
-          //                   //   BoxShadow(
-          //                   //     color: Colors.grey.withOpacity(0.5),
-          //                   //     spreadRadius: 1,
-          //                   //     blurRadius: 1,
-          //                   //     offset: Offset(0, 3),
-          //                   //   ),
-          //                   // ],
-          //                   ),
-          //               child: Center(
-          //                   child: Text("확인",
-          //                       style: TextStyle(
-          //                           fontSize: 15,
-          //                           fontWeight: FontWeight.w700,
-          //                           color: Color(0xff5F7C69)))),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Visibility(
+            visible: isClick, // Show or hide based on the value of isClick
+            child: Center(
+              child: Container(
+                width: 255.27,
+                height: 125.11,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Color(0xffADADAD),
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x40000000),
+                      spreadRadius: 0,
+                      blurRadius: 4,
+                      offset: Offset(4, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text("저장하였습니다.",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff607D6A))),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        width: 91,
+                        height: 31,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(17),
+                            color: Color(0xffDBE5D4)
+                            // border: Border.all(
+                            //   color: Color(0xff686572),
+                            //   width: 2,
+                            // ),
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //     color: Colors.grey.withOpacity(0.5),
+                            //     spreadRadius: 1,
+                            //     blurRadius: 1,
+                            //     offset: Offset(0, 3),
+                            //   ),
+                            // ],
+                            ),
+                        child: Center(
+                            child: Text("확인",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xff5F7C69)))),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
