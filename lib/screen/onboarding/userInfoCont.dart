@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../home/home_screen.dart';
-import '../nutrition.dart';
+import '../Nutrition/nutrition.dart';
 
 class InforContent extends StatefulWidget {
   final String text;

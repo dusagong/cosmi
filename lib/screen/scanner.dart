@@ -1,6 +1,6 @@
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cosmi/screen/nutrition.dart';
+import 'package:cosmi/screen/Nutrition/nutrition.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'dart:async'; // Import this to use the Timer class

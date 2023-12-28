@@ -1,4 +1,7 @@
 import 'package:cosmi/controll.dart';
+import 'package:cosmi/screen/Nutrition/nutrition1.dart';
+import 'package:cosmi/screen/Nutrition/nutrition2.dart';
+import 'package:cosmi/screen/Nutrition/nutrition3.dart';
 import 'package:cosmi/screen/wish.dart';
 import 'package:flutter/material.dart';
 import 'package:cosmi/constants.dart';
@@ -14,7 +17,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/services.dart';
-import 'package:cosmi/screen/nutrition.dart';
+import 'package:cosmi/screen/Nutrition/nutrition.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -146,10 +149,18 @@ class _HomeScreenState extends State<HomeScreen> {
         print('Data: ${documentSnapshot.data()}');
 
         // Navigate to the Nutrition screen with the scanned result
-        Get.to(() => Nutrition(result.rawContent));
+        if (result.rawContent == '8803328505927')
+          Get.to(() => Nutrition(result.rawContent));
+        else if (result.rawContent == '8806105401696') {
+          Get.to(() => Nutrition1(result.rawContent));
+        } else if (result.rawContent == '6921439805643') {
+          Get.to(() => Nutrition2(result.rawContent));
+        } else if (result.rawContent == '8809372278299') {
+          Get.to(() => Nutrition3(result.rawContent));
+        }
       } else {
         print('Document does not exist.');
-        Get.to(() => Nutrition(result.rawContent));
+        // Get.to(() => Nutrition3(result.rawContent));
       }
     } on PlatformException catch (e) {
       // setState(() {

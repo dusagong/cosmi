@@ -4,16 +4,16 @@ import 'package:cosmi/screen/wish.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Nutrition extends StatefulWidget {
+class Nutrition2 extends StatefulWidget {
   final String cole;
 
-  Nutrition(this.cole);
+  Nutrition2(this.cole);
 
   @override
-  _NutritionState createState() => _NutritionState();
+  _Nutrition2State createState() => _Nutrition2State();
 }
 
-class _NutritionState extends State<Nutrition> {
+class _Nutrition2State extends State<Nutrition2> {
   bool isClick = false;
   void init() {
     super.initState();
@@ -64,16 +64,16 @@ class _NutritionState extends State<Nutrition> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset('assets/UT/horse.jpeg'),
+                Image.asset('assets/nutrition/nu2.jpeg'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
                       width: 23,
                     ),
-                    Text('마유크림 horse cream 7%',
+                    Text('GATS BY 테크니컬 볼륨 스프레이',
                         style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.w400)),
+                            fontSize: 20, fontWeight: FontWeight.w400)),
                     SizedBox(
                       height: 1,
                     ),
@@ -392,9 +392,7 @@ class _NutritionState extends State<Nutrition> {
                         onPressed: () {
                           setState(() {
                             isClick = true;
-                            print(Get.find<SimpleController>().counter);
-                            Get.find<SimpleController>().save();
-                            print(Get.find<SimpleController>().counter);
+                            Get.find<SimpleController>().saveCounter(2);
                           });
                         },
                         style: ElevatedButton.styleFrom(
