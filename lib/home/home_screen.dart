@@ -111,6 +111,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> checkCollectionExistence(String collectionName) async {
+    // Reference to the Firestore instance
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    // Reference to the specific collection
+    CollectionReference collectionReference =
+        firestore.collection(collectionName);
+
+    // Get the documents in the collection
+    QuerySnapshot querySnapshot = await collectionReference.get();
+
+    // Check if the collection exists by examining the documents
+    if (querySnapshot.docs.isNotEmpty) {
+      print('Collection $collectionName exists.');
+    } else {
+      print('Collection $collectionName does not exist.');
+    }
+  }
+
   Future<void> _scan() async {
     try {
       final result = await BarcodeScanner.scan(
@@ -136,17 +155,20 @@ class _HomeScreenState extends State<HomeScreen> {
       });
       bool documentExists = await doesDocumentExistInCollection(
           'Products', result.rawContent.toString());
+
       print('여거!!');
       print(result.rawContent.toString());
+      print(documentExists);
+      checkCollectionExistence('Product');
       if (documentExists) {
         // The document exists in the "Products" collection
-        DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-            .collection('Products')
-            .doc(result.rawContent)
-            .get();
+        // DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+        //     .collection('Product')
+        //     .doc(result.rawContent.toString())
+        //     .get();
 
-        print('Document ID: ${documentSnapshot.id}');
-        print('Data: ${documentSnapshot.data()}');
+        // print('Document ID: ${documentSnapshot.id}');
+        // print('Data: ${documentSnapshot.data()}');
 
         // Navigate to the Nutrition screen with the scanned result
         if (result.rawContent.toString() == '8803328505927')
