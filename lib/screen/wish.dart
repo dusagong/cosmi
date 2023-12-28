@@ -4,6 +4,8 @@ import 'package:cosmi/screen/ai.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'aiAnalysis.dart';
+
 class Wish extends StatefulWidget {
   const Wish({super.key});
 
@@ -122,20 +124,36 @@ class _WishState extends State<Wish> {
                               });
                               print(controller.counter);
                             },
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: Icon(Icons.delete_outline),
                             color: Colors.red,
                           ),
-                          IconButton(
-                              onPressed: () {
-                                Get.to(() => AIPage());
-                              },
-                              icon: Icon(Icons.rocket))
+                          ElevatedButton(
+                              onPressed:  () {Get.to(() => Analysis());},
+                              style: ElevatedButton.styleFrom(primary: Color(0xFF5DB075)),
+                              child: Text('AI 분석', style: TextStyle(color: Colors.white),)
+                          )
+
                         ],
                       ),
                     ),
                   ),
                 )
-              : Text('data')
+              : const Padding(
+                padding: EdgeInsets.fromLTRB(0, 24, 0, 0),
+                child: Center(
+                  child:
+                  Text(
+                    '바코드 스캔을 통해 마음에 드는 제품을 담으세요!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Readex Pro',
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
+                      color: Color(0xFF5DB075),
+                    ),
+                  ),
+                ),
+          )
         ],
       ),
     );
