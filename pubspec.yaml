@@ -72,6 +72,7 @@ flutter:
     - assets/back/
     - assets/onboard/
     - assets/images/
+    - assets/UT/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
