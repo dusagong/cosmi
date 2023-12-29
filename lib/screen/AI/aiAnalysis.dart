@@ -199,7 +199,7 @@ class _AnalysisState extends State<Analysis> {
                       Container(
                         width: 122,
                         height: 122,
-                        child: Image.asset('assets/nutrition/nu1.jpeg',),
+                        child: Image.asset('assets/UT/horse.jpeg',),
                         decoration: BoxDecoration(
                           color: Color(0xFFE0E3E7),
                           borderRadius: BorderRadius.circular(8),
