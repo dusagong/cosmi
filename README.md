@@ -1,7 +1,6 @@
 # cosmi
 
-A new Flutter project.
-
+For User test. just a prototype.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
